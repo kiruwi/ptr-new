@@ -5,11 +5,8 @@ import { createPortal } from "react-dom";
 import SiteLogo from "./SiteLogo";
 
 const navLinks = [
-  { href: "#welcome", label: "Welcome" },
-  { href: "#restaurant", label: "Restaurant" },
-  { href: "/menu", label: "Menu" },
-  { href: "#accommodation", label: "Stay" },
-  { href: "#contact", label: "Contact" },
+  { href: "/menu", label: "Our Menu" },
+  { href: "#accommodation", label: "Rooms" },
 ];
 
 export default function TopMiniNav() {
