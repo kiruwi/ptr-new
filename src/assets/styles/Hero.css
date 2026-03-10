@@ -46,8 +46,8 @@
   gap: 0.58rem;
   padding: 0.52rem 1rem;
   border-bottom: 1px solid rgba(217, 187, 146, 0.42);
-  background: var(--gold-bright);
-  color: var(--bg);
+  background: #5f4e39;
+  color: var(--gold-bright);
   text-decoration: none;
   transition:
     border-color 0.2s ease,
@@ -59,7 +59,7 @@
 .hero-global-rating:hover,
 .hero-global-rating:focus-visible {
   border-color: rgba(240, 222, 194, 0.6);
-  background: var(--gold-bright);
+  background: #a98155;
   transform: translateY(-1px);
   outline: none;
 }
@@ -197,7 +197,8 @@
 }
 
 .top-mini-nav__text {
-  font-size: 0.8rem;
+  font-size: var(--rating-banner-mark-size);
+  line-height: 1;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
