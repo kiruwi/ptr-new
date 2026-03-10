@@ -108,24 +108,25 @@
   }
 
   .hero-global-rating {
+    --rating-banner-mark-size: 0.9rem;
     min-height: var(--mobile-rating-banner-height);
     padding: 0.35rem 0.55rem;
     gap: 0.4rem;
   }
 
   .hero-global-rating__google {
-    width: 0.9rem;
-    height: 0.9rem;
+    width: var(--rating-banner-mark-size);
+    height: var(--rating-banner-mark-size);
   }
 
   .hero-global-rating__text {
-    font-size: 0.58rem;
+    font-size: var(--rating-banner-mark-size);
     line-height: 1.22;
     letter-spacing: 0.09em;
   }
 
   .hero-global-rating__stars {
-    font-size: 0.62rem;
+    font-size: var(--rating-banner-mark-size);
     letter-spacing: 0.04em;
   }
 
