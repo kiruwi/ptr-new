@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap");
+
+@import "./00-foundation.css";
+@import "./10-shell-and-overlays.css";
+@import "./20-hero.css";
+@import "./30-marquee-bands.css";
+@import "./40-feature-and-lunch.css";
+@import "./50-services-stay-suites.css";
+@import "./60-newsletter-social-footer.css";
+@import "./70-image-assets.css";
+@import "./80-menu-page.css";
+@import "./90-utilities-responsive.css";
