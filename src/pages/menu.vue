@@ -46,7 +46,7 @@ const structuredData = {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: absoluteUrl(siteUrl, "/home"),
+          item: absoluteUrl(siteUrl, "/"),
         },
         {
           "@type": "ListItem",
@@ -92,7 +92,7 @@ const structuredData = {
   <main class="restaurant-menu-page">
     <div class="restaurant-menu-shell">
       <header class="restaurant-menu-header">
-        <NuxtLink to="/home" class="restaurant-menu-home">
+        <NuxtLink to="/" class="restaurant-menu-home">
           Back to home
         </NuxtLink>
         <div class="restaurant-menu-intro">

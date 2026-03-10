@@ -7,7 +7,7 @@ export default defineEventHandler((event) => {
 
   const pages = [
     {
-      loc: absoluteUrl(siteUrl, "/home"),
+      loc: absoluteUrl(siteUrl, "/"),
       changefreq: "weekly",
       priority: "1.0",
     },
