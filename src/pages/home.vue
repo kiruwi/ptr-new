@@ -17,7 +17,7 @@ import { absoluteUrl, normalizeSiteUrl } from "~/utils/site";
 
 const runtimeConfig = useRuntimeConfig();
 const siteUrl = normalizeSiteUrl(runtimeConfig.public.siteUrl);
-const pageUrl = absoluteUrl(siteUrl, "/");
+const pageUrl = absoluteUrl(siteUrl, "/home");
 const imageUrl = absoluteUrl(siteUrl, siteInfo.image);
 
 useSeoMeta({

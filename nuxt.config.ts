@@ -51,14 +51,14 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    "/": { prerender: true },
+    "/home": { prerender: true },
     "/menu": { prerender: true },
     "/robots.txt": { prerender: true },
     "/sitemap.xml": { prerender: true },
   },
   nitro: {
     prerender: {
-      routes: ["/", "/menu", "/robots.txt", "/sitemap.xml"],
+      routes: ["/home", "/menu", "/robots.txt", "/sitemap.xml"],
     },
   },
 });
