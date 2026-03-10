@@ -51,6 +51,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    "/": { prerender: true },
     "/home": { prerender: true },
     "/menu": { prerender: true },
     "/robots.txt": { prerender: true },
@@ -58,7 +59,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ["/home", "/menu", "/robots.txt", "/sitemap.xml"],
+      routes: ["/", "/home", "/menu", "/robots.txt", "/sitemap.xml"],
     },
   },
 });
