@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   srcDir: "src/",
-  css: ["~/assets/styles/Globals.css"],
+  css: ["~/assets/styles/globals.css"],
   devtools: { enabled: false },
   modules: [],
   app: {
