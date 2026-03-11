@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import "./assets/styles/Globals.css";
+
 const config = useRuntimeConfig();
 const gaId = config.public.googleAnalyticsId;
 
