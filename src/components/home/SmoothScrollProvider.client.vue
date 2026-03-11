@@ -8,16 +8,16 @@ let lenis: Lenis | null = null;
 
 onMounted(() => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const isTouchOrMobile =
-    window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(max-width: 700px)").matches;
 
-  if (prefersReducedMotion || isTouchOrMobile) {
+  if (prefersReducedMotion) {
     return;
   }
 
   lenis = new Lenis({
     duration: 1.1,
     smoothWheel: true,
+    syncTouch: true,
+    touchMultiplier: 1,
   });
 
   lenis.on("scroll", () => {

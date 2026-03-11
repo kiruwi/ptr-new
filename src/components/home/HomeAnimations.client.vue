@@ -12,6 +12,10 @@ onMounted(() => {
 
   const context = gsap.context(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice =
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(hover: none)").matches ||
+      window.matchMedia("(max-width: 900px)").matches;
     const outlineDrift = prefersReducedMotion ? 10 : 18;
     const outlineScrub = prefersReducedMotion ? 0.55 : 0.9;
     const bannerTextDrift = prefersReducedMotion ? 28 : 92;
@@ -256,42 +260,56 @@ onMounted(() => {
     if (!prefersReducedMotion) {
       const featureLeft = document.querySelector<HTMLElement>(".feature-chip.image-sign");
       if (featureLeft) {
-        gsap.set(featureLeft, {
-          y: 60,
-          scale: 1.16,
-        });
+        if (isTouchDevice) {
+          gsap.set(featureLeft, {
+            y: 0,
+            scale: 1,
+          });
+        } else {
+          gsap.set(featureLeft, {
+            y: 60,
+            scale: 1.16,
+          });
 
-        gsap.to(featureLeft, {
-          y: -180,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".feature-row",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.5,
-            invalidateOnRefresh: true,
-          },
-        });
+          gsap.to(featureLeft, {
+            y: -180,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".feature-row",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.5,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
       }
 
       const featureRight = document.querySelector<HTMLElement>(".feature-chip.image-lamp");
       if (featureRight) {
-        gsap.set(featureRight, {
-          y: 120,
-          scale: 1.2,
-        });
+        if (isTouchDevice) {
+          gsap.set(featureRight, {
+            y: 0,
+            scale: 1,
+          });
+        } else {
+          gsap.set(featureRight, {
+            y: 120,
+            scale: 1.2,
+          });
 
-        gsap.to(featureRight, {
-          y: -260,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".feature-row",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.55,
-            invalidateOnRefresh: true,
-          },
-        });
+          gsap.to(featureRight, {
+            y: -260,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".feature-row",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.55,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
       }
     }
 
@@ -337,52 +355,54 @@ onMounted(() => {
         },
       );
 
-      gsap.set(diningCopy, { y: bannerTextDrift * 0.55 });
+      if (!isTouchDevice) {
+        gsap.set(diningCopy, { y: bannerTextDrift * 0.55 });
 
-      gsap.to(diningCopy, {
-        y: -bannerTextDrift,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".full-banner",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: bannerTextScrub,
-          invalidateOnRefresh: true,
-        },
-      });
+        gsap.to(diningCopy, {
+          y: -bannerTextDrift,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".full-banner",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: bannerTextScrub,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
     }
 
     gsap.utils.toArray<HTMLElement>(".outline-band-dual").forEach((band) => {
-      const top = band.querySelector<HTMLElement>(".outline-top");
-      const bottom = band.querySelector<HTMLElement>(".outline-bottom");
+        const top = band.querySelector<HTMLElement>(".outline-top");
+        const bottom = band.querySelector<HTMLElement>(".outline-bottom");
 
-      if (!top || !bottom) {
-        return;
-      }
+        if (!top || !bottom) {
+          return;
+        }
 
-      gsap.to(top, {
-        xPercent: -outlineDrift,
-        ease: "none",
-        scrollTrigger: {
-          trigger: band,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: outlineScrub,
-          invalidateOnRefresh: true,
-        },
-      });
+        gsap.to(top, {
+          xPercent: -outlineDrift,
+          ease: "none",
+          scrollTrigger: {
+            trigger: band,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: outlineScrub,
+            invalidateOnRefresh: true,
+          },
+        });
 
-      gsap.to(bottom, {
-        xPercent: outlineDrift,
-        ease: "none",
-        scrollTrigger: {
-          trigger: band,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: outlineScrub,
-          invalidateOnRefresh: true,
-        },
-      });
+        gsap.to(bottom, {
+          xPercent: outlineDrift,
+          ease: "none",
+          scrollTrigger: {
+            trigger: band,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: outlineScrub,
+            invalidateOnRefresh: true,
+          },
+        });
     });
 
     const refreshTriggers = () => {
