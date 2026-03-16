@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://www.patamurestaurants.com";
+const DEFAULT_SITE_URL = "https://ptr-new.i4nkirui.workers.dev";
 
 export function normalizeSiteUrl(url?: string) {
   return (url?.trim() || DEFAULT_SITE_URL).replace(/\/+$/, "");
