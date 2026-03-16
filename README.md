@@ -1,7 +1,5 @@
 # Patamu Restaurant & Lodge
 
-Nuxt 4 rebuild of the Patamu marketing site, preserving the existing visual system while improving crawlability and search metadata.
-
 ## Development
 
 ```bash

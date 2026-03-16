@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  compatibilityDate: "2026-03-16",
   srcDir: "src/",
   css: ["~/assets/styles/globals.css"],
   devtools: { enabled: false },
