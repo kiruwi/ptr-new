@@ -100,7 +100,7 @@ cpSync(resolve(projectRoot, "CPANEL.md"), resolve(bundleRoot, "CPANEL.md"));
 const cpanelEnv = [
   "NODE_ENV=production",
   "NUXT_PUBLIC_SITE_URL=https://patamurestaurants.com",
-  "NUXT_PUBLIC_GA_ID=",
+  "NUXT_PUBLIC_GA_ID=G-3FHWVHDTZC",
   "NUXT_ALLOWED_ORIGINS=https://patamurestaurants.com",
   "AUTH_SESSION_SECRET=replace-with-a-32-plus-character-random-secret",
   "ADMIN_USER_IDS=",

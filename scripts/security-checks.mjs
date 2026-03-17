@@ -46,10 +46,13 @@ assert(npmrc.includes("save-exact=true"), ".npmrc must enforce save-exact=true."
 
 const nuxtConfig = readFileSync(join(projectRoot, "nuxt.config.ts"), "utf8");
 assert(/devtools:\s*\{\s*enabled:\s*false\s*\}/m.test(nuxtConfig), "Nuxt devtools must stay disabled.");
-const analyticsFallbackMatch = nuxtConfig.match(/googleAnalyticsId:\s*process\.env\.NUXT_PUBLIC_GA_ID\s*\|\|\s*([^\n,]+)/);
 assert(
-  !analyticsFallbackMatch || analyticsFallbackMatch[1].trim() === '""',
-  "Do not ship a default analytics ID.",
+  /const defaultGoogleAnalyticsId = process\.env\.NODE_ENV === "production" \? "G-3FHWVHDTZC" : "";/m.test(nuxtConfig),
+  "Analytics defaults must stay production-only.",
+);
+assert(
+  /googleAnalyticsId:\s*process\.env\.NUXT_PUBLIC_GA_ID\s*\|\|\s*defaultGoogleAnalyticsId/m.test(nuxtConfig),
+  "Runtime config must source analytics from env first, then the production-only default.",
 );
 
 const envExample = readFileSync(join(projectRoot, ".env.example"), "utf8");

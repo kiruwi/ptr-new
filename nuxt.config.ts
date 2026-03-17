@@ -1,3 +1,5 @@
+const defaultGoogleAnalyticsId = process.env.NODE_ENV === "production" ? "G-3FHWVHDTZC" : "";
+
 export default defineNuxtConfig({
   compatibilityDate: "2026-03-16",
   srcDir: "src/",
@@ -48,7 +50,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://patamurestaurants.com",
-      googleAnalyticsId: process.env.NUXT_PUBLIC_GA_ID || "",
+      googleAnalyticsId: process.env.NUXT_PUBLIC_GA_ID || defaultGoogleAnalyticsId,
     },
   },
   routeRules: {

@@ -32,7 +32,7 @@ This creates:
 4. Add environment variables if needed:
    - `NODE_ENV=production`
    - `NUXT_PUBLIC_SITE_URL=https://patamurestaurants.com`
-   - `NUXT_PUBLIC_GA_ID=...` if analytics should be enabled
+   - `NUXT_PUBLIC_GA_ID=G-3FHWVHDTZC`
    - `NUXT_ALLOWED_ORIGINS=https://patamurestaurants.com`
    - `AUTH_SESSION_SECRET=replace-with-a-32-plus-character-random-secret`
    - `SECURITY_STRICT_BROWSER_HEADERS=false`
