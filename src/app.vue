@@ -1,28 +1,14 @@
 <script setup lang="ts">
-const config = useRuntimeConfig();
-const gaId = config.public.googleAnalyticsId;
+import { loadGoogleAnalytics, normalizeGoogleAnalyticsId } from "~/utils/analytics";
 
-if (gaId) {
-  useHead({
-    script: [
-      {
-        src: `https://www.googletagmanager.com/gtag/js?id=${gaId}`,
-        async: true,
-        tagPosition: "bodyClose",
-      },
-      {
-        key: "google-tag-manager-inline",
-        tagPosition: "bodyClose",
-        innerHTML: [
-          "window.dataLayer = window.dataLayer || [];",
-          "function gtag(){dataLayer.push(arguments);}",
-          "gtag('js', new Date());",
-          `gtag('config', '${gaId}');`,
-        ].join(""),
-      },
-    ],
-  });
-}
+const config = useRuntimeConfig();
+const gaId = normalizeGoogleAnalyticsId(config.public.googleAnalyticsId);
+
+onMounted(() => {
+  if (gaId) {
+    loadGoogleAnalytics(gaId);
+  }
+});
 </script>
 
 <template>

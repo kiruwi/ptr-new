@@ -47,8 +47,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://ptr-new.i4nkirui.workers.dev",
-      googleAnalyticsId: process.env.NUXT_PUBLIC_GA_ID || "G-3FHWVHDTZC",
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://patamurestaurants.com",
+      googleAnalyticsId: process.env.NUXT_PUBLIC_GA_ID || "",
     },
   },
   routeRules: {

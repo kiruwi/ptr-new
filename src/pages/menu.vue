@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import MenuGroupView from "~/components/menu/MenuGroupView.vue";
-import { menuCategories, toNumericPrice } from "~/data/menu";
+import { menuCategories } from "~/data/menu";
 import { siteInfo } from "~/data/site";
+import { getMenuStructuredData } from "~/utils/structuredData";
 import { absoluteUrl, normalizeSiteUrl } from "~/utils/site";
 
 const runtimeConfig = useRuntimeConfig();
@@ -35,55 +36,7 @@ useHead({
   ],
 });
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${pageUrl}#breadcrumbs`,
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: absoluteUrl(siteUrl, "/"),
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Menu",
-          item: pageUrl,
-        },
-      ],
-    },
-    {
-      "@type": "Menu",
-      "@id": `${pageUrl}#menu`,
-      url: pageUrl,
-      inLanguage: "en",
-      name: "Patamu Restaurant Menu",
-      description: "Freshly prepared African and international dishes. All prices in TSH.",
-      hasMenuSection: menuCategories.map((category) => ({
-        "@type": "MenuSection",
-        name: category.title,
-        hasMenuSection: category.groups.map((group) => ({
-          "@type": "MenuSection",
-          name: group.title,
-          ...(group.note ? { description: group.note } : {}),
-          hasMenuItem: group.items.map((item) => ({
-            "@type": "MenuItem",
-            name: item.name,
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "TZS",
-              price: toNumericPrice(item.price),
-            },
-          })),
-        })),
-      })),
-    },
-  ],
-};
+const structuredData = getMenuStructuredData(siteUrl);
 </script>
 
 <template>

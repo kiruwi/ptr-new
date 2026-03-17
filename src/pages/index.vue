@@ -13,6 +13,7 @@ import StayIntroSection from "~/components/home/StayIntroSection.vue";
 import SuitesSection from "~/components/home/SuitesSection.vue";
 import { serviceItems, suiteCards, topMarqueeText } from "~/data/home";
 import { siteInfo } from "~/data/site";
+import { getHomeStructuredData } from "~/utils/structuredData";
 import { absoluteUrl, normalizeSiteUrl } from "~/utils/site";
 
 const runtimeConfig = useRuntimeConfig();
@@ -45,42 +46,7 @@ useHead({
   ],
 });
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": `${pageUrl}#website`,
-      url: pageUrl,
-      name: siteInfo.name,
-      inLanguage: "en",
-    },
-    {
-      "@type": "Restaurant",
-      "@id": `${pageUrl}#restaurant`,
-      url: pageUrl,
-      name: siteInfo.name,
-      description: siteInfo.description,
-      image: imageUrl,
-      servesCuisine: ["African", "International", "Tanzanian"],
-      telephone: siteInfo.telephone,
-      email: siteInfo.reservationsEmail,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: siteInfo.addressLocality,
-        addressRegion: siteInfo.addressRegion,
-        addressCountry: siteInfo.addressCountry,
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: 4.2,
-        reviewCount: 94,
-      },
-      hasMenu: absoluteUrl(siteUrl, "/menu"),
-      sameAs: [siteInfo.instagramUrl],
-    },
-  ],
-};
+const structuredData = getHomeStructuredData(siteUrl);
 </script>
 
 <template>
