@@ -16,7 +16,7 @@ cp .env.example .env
 Available variables:
 
 - `NUXT_PUBLIC_SITE_URL` sets the public site URL used for canonical tags, `robots.txt`, and `sitemap.xml`.
-- `NUXT_PUBLIC_GA_ID` enables Google Analytics when set to a valid `G-XXXXXXXXXX` measurement ID. Production defaults to `G-3FHWVHDTZC`.
+- `NUXT_PUBLIC_GA_ID` enables Google Analytics when set to a valid `G-XXXXXXXXXX` measurement ID. Production defaults to a placeholder fake value in docs.
 - `NUXT_ALLOWED_ORIGINS` is a comma-separated allowlist for cross-origin API access.
 - `AUTH_SESSION_SECRET` is required before enabling any cookie-backed auth routes.
 - `ADMIN_USER_IDS` can be used by future admin-only routes as an explicit allowlist.
@@ -91,9 +91,9 @@ For cPanel Application Manager:
 2. Set the application root to the extracted bundle folder.
 3. Set the startup file to `app.js`.
 4. Set `NODE_ENV=production`.
-5. Set `NUXT_PUBLIC_SITE_URL=https://patamurestaurants.com`.
-6. Set `NUXT_PUBLIC_GA_ID=G-3FHWVHDTZC` unless you intentionally want a different production measurement ID.
-7. Set `NUXT_ALLOWED_ORIGINS=https://patamurestaurants.com` unless a different trusted origin must call `/api/*`.
+5. Set `NUXT_PUBLIC_SITE_URL=https://example.invalid`.
+6. Set `NUXT_PUBLIC_GA_ID=G-FAKE123456` unless you intentionally want a different production measurement ID.
+7. Set `NUXT_ALLOWED_ORIGINS=https://example.invalid` unless a different trusted origin must call `/api/*`.
 8. Set `AUTH_SESSION_SECRET` before deploying any authenticated API routes.
 9. Leave `SECURITY_STRICT_BROWSER_HEADERS=false` unless you have explicitly verified that stricter CSP/browser isolation does not break the hosted frontend.
 

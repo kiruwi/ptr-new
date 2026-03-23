@@ -31,10 +31,10 @@ This creates:
 3. Set the startup file to `app.js`.
 4. Add environment variables if needed:
    - `NODE_ENV=production`
-   - `NUXT_PUBLIC_SITE_URL=https://patamurestaurants.com`
-   - `NUXT_PUBLIC_GA_ID=G-3FHWVHDTZC`
-   - `NUXT_ALLOWED_ORIGINS=https://patamurestaurants.com`
-   - `AUTH_SESSION_SECRET=replace-with-a-32-plus-character-random-secret`
+   - `NUXT_PUBLIC_SITE_URL=https://example.invalid`
+   - `NUXT_PUBLIC_GA_ID=G-FAKE123456`
+   - `NUXT_ALLOWED_ORIGINS=https://example.invalid`
+   - `AUTH_SESSION_SECRET=replace-with-a-random-32-plus-character-secret`
    - `SECURITY_STRICT_BROWSER_HEADERS=false`
 5. Restart the application.
 
