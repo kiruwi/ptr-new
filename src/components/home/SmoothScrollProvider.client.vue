@@ -1,44 +1,67 @@
 <script setup lang="ts">
-import Lenis from "lenis";
 import { onBeforeUnmount, onMounted } from "vue";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 let animationFrame = 0;
-let lenis: Lenis | null = null;
+let cleanup: (() => void) | undefined;
 
 onMounted(() => {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (prefersReducedMotion) {
-    return;
-  }
-
-  lenis = new Lenis({
-    duration: 1.1,
-    smoothWheel: true,
-    syncTouch: true,
-    touchMultiplier: 1,
-  });
-
-  lenis.on("scroll", () => {
-    ScrollTrigger.update();
-  });
-
-  const raf = (time: number) => {
-    lenis?.raf(time);
-    animationFrame = window.requestAnimationFrame(raf);
+  let disposed = false;
+  cleanup = () => {
+    disposed = true;
   };
 
-  animationFrame = window.requestAnimationFrame(raf);
+  void (async () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const [{ default: Lenis }, { default: gsap }, { ScrollTrigger }] = await Promise.all([
+      import("lenis"),
+      import("gsap"),
+      import("gsap/ScrollTrigger"),
+    ]);
+
+    if (disposed) {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      smoothWheel: true,
+      syncTouch: true,
+      touchMultiplier: 1,
+    });
+
+    lenis.on("scroll", () => {
+      ScrollTrigger.update();
+    });
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      animationFrame = window.requestAnimationFrame(raf);
+    };
+
+    animationFrame = window.requestAnimationFrame(raf);
+
+    cleanup = () => {
+      disposed = true;
+
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+
+      lenis.destroy();
+    };
+  })();
 });
 
 onBeforeUnmount(() => {
-  if (animationFrame) {
-    window.cancelAnimationFrame(animationFrame);
-  }
-
-  lenis?.destroy();
-  lenis = null;
+  cleanup?.();
 });
 </script>
 

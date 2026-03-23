@@ -32,8 +32,21 @@
 .social-grid > a {
   position: relative;
   overflow: hidden;
-  background-position: center;
-  background-size: cover;
+}
+
+.hero-image > .media-fill,
+.feature-chip > .media-fill,
+.full-banner-media > .media-fill,
+.menu-photo > .media-fill,
+.suite-card > .media-fill,
+.social-grid > a > .media-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 .hero-image::before,
@@ -45,7 +58,9 @@
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(8, 9, 13, 0.08), rgba(8, 9, 13, 0.74));
+  pointer-events: none;
 }
 
 .hero-image::before {

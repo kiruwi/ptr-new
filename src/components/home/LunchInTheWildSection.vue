@@ -1,6 +1,14 @@
 <template>
   <section class="full-banner reveal" id="restaurant">
-    <div class="full-banner-media image-dining" aria-hidden="true" />
+    <div class="full-banner-media image-dining" aria-hidden="true">
+      <img
+        src="/images/bush-lunch.webp"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="media-fill"
+      >
+    </div>
     <div class="full-banner-content">
       <h2>Lunch in the Wild</h2>
       <p>

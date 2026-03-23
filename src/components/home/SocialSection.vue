@@ -2,9 +2,21 @@
 import { siteInfo } from "~/data/site";
 
 const socialImages = [
-  { className: "image-social-two", label: "Visit Patamu Lodge on Instagram (image 1)" },
-  { className: "image-social-three", label: "Visit Patamu Lodge on Instagram (image 2)" },
-  { className: "image-social-four", label: "Visit Patamu Lodge on Instagram (image 3)" },
+  {
+    className: "image-social-two",
+    imageSrc: "/images/insta1.webp",
+    label: "Visit Patamu Lodge on Instagram (image 1)",
+  },
+  {
+    className: "image-social-three",
+    imageSrc: "/images/insta2.webp",
+    label: "Visit Patamu Lodge on Instagram (image 2)",
+  },
+  {
+    className: "image-social-four",
+    imageSrc: "/images/insta3.webp",
+    label: "Visit Patamu Lodge on Instagram (image 3)",
+  },
 ];
 </script>
 
@@ -30,6 +42,7 @@ const socialImages = [
         rel="noopener noreferrer"
         :aria-label="item.label"
       >
+        <img :src="item.imageSrc" alt="" loading="lazy" decoding="async" class="media-fill">
         <span class="social-link__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" role="presentation" focusable="false">
             <path

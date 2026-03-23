@@ -10,22 +10,20 @@ export const serviceItems = [
 
 export const suiteCards = [
   {
-    imageClass: "image-suite-one",
-  },
-  {
-    imageClass: "image-suite-two",
-  },
-  {
     imageClass: "image-suite-three",
+    imageSrc: "/images/suite3.webp",
   },
   {
     imageClass: "image-suite-four",
+    imageSrc: "/images/suite4.webp",
   },
   {
     imageClass: "image-suite-five",
+    imageSrc: "/images/suite5.webp",
   },
   {
     imageClass: "image-suite-six",
+    imageSrc: "/images/suite6.webp",
   },
 ];
 

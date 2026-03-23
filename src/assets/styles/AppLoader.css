@@ -1,0 +1,83 @@
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: #151515;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.app-loader--pending {
+  pointer-events: auto;
+  animation:
+    app-loader-visibility 0s linear 500ms forwards,
+    app-loader-fade-in 260ms ease 500ms forwards;
+}
+
+.app-loader__logo {
+  width: clamp(8.5rem, 18vw, 14rem);
+  height: auto;
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  filter: drop-shadow(0 0 22px rgba(0, 0, 0, 0.55));
+}
+
+.app-loader--pending .app-loader__logo {
+  animation:
+    app-loader-logo-in 320ms ease 500ms forwards,
+    app-loader-logo-pulse 1.9s ease-in-out 860ms infinite;
+}
+
+.app-loader--closing {
+  visibility: visible;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms ease, visibility 0s linear 320ms;
+}
+
+.app-loader--closing .app-loader__logo {
+  opacity: 0;
+  transform: translateY(-6px) scale(1.02);
+  transition: opacity 240ms ease, transform 320ms ease;
+}
+
+@keyframes app-loader-visibility {
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes app-loader-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes app-loader-logo-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes app-loader-logo-pulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-loader--pending .app-loader__logo,
+  .app-loader--closing .app-loader__logo {
+    animation: none;
+    transition: opacity 180ms ease;
+    transform: none;
+  }
+}

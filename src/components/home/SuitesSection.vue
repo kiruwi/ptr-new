@@ -2,6 +2,7 @@
 defineProps<{
   items: Array<{
     imageClass: string;
+    imageSrc: string;
   }>;
 }>();
 </script>
@@ -14,7 +15,9 @@ defineProps<{
         :key="item.imageClass"
         :class="`suite-card ${item.imageClass}`"
         aria-hidden="true"
-      />
+      >
+        <img :src="item.imageSrc" alt="" loading="lazy" decoding="async" class="media-fill">
+      </article>
     </div>
   </section>
 </template>

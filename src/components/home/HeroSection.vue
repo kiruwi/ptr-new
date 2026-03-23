@@ -45,7 +45,16 @@ import { siteInfo } from "~/data/site";
       <SiteLogo class="site-logo__image" :priority="true" />
     </a>
 
-    <article class="hero-image image-arch" aria-hidden="true" />
+    <article class="hero-image image-arch" aria-hidden="true">
+      <img
+        src="/images/patamu.webp"
+        alt=""
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        class="media-fill"
+      >
+    </article>
 
     <article class="hero-content">
       <TopMiniNav />
