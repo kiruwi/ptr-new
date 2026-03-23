@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const projectRoot = process.cwd();
@@ -55,8 +55,13 @@ assert(
   "Runtime config must source analytics from env first, then the production-only default.",
 );
 
-const envExample = readFileSync(join(projectRoot, ".env.example"), "utf8");
-assert(!/^NUXT_PUBLIC_.*(?:SECRET|TOKEN|PASSWORD|KEY)=/gim.test(envExample), "Secret-looking values must not use NUXT_PUBLIC_ env vars.");
+const envExamplePath = join(projectRoot, ".env.example");
+assert(existsSync(envExamplePath), ".env.example must be committed so CI can validate public env defaults.");
+
+if (existsSync(envExamplePath)) {
+  const envExample = readFileSync(envExamplePath, "utf8");
+  assert(!/^NUXT_PUBLIC_.*(?:SECRET|TOKEN|PASSWORD|KEY)=/gim.test(envExample), "Secret-looking values must not use NUXT_PUBLIC_ env vars.");
+}
 
 for (const file of walk(join(projectRoot, "server"))) {
   const source = readFileSync(file, "utf8");
