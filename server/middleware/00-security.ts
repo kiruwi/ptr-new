@@ -1,5 +1,5 @@
 import { createError, defineEventHandler, getRequestIP } from "h3";
-import { normalizeGoogleAnalyticsId } from "../../src/utils/analytics.ts";
+import { normalizeGoogleAnalyticsId, normalizeGoogleTagManagerId } from "../../src/utils/analytics.ts";
 import { assertCsrfProtection, assertOwnership, requireAdminSession, requireAuthenticatedSession } from "../utils/security/auth.ts";
 import { applySecurityHeaders, handleStrictCors, parseAllowedOrigins } from "../utils/security/headers.ts";
 import { logSecurityEvent } from "../utils/security/logging.ts";
@@ -10,12 +10,14 @@ const USER_RESOURCE_PATTERN = /^\/api\/users\/([^/]+)(?:\/|$)/;
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event);
   const gaId = normalizeGoogleAnalyticsId(runtimeConfig.public.googleAnalyticsId);
+  const gtmId = normalizeGoogleTagManagerId(runtimeConfig.public.googleTagManagerId);
   const allowedOrigins = parseAllowedOrigins(process.env.NUXT_ALLOWED_ORIGINS);
 
   applySecurityHeaders({
     event,
     allowedOrigins,
     gaId,
+    gtmId,
     siteUrl: runtimeConfig.public.siteUrl,
   });
 

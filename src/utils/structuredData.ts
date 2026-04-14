@@ -41,8 +41,8 @@ export function getHomeStructuredData(siteUrlInput: string) {
         },
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: 4.2,
-          reviewCount: 94,
+          ratingValue: 4.3,
+          reviewCount: 95,
         },
         hasMenu: absoluteUrl(siteUrl, "/menu"),
         sameAs: [siteInfo.instagramUrl],

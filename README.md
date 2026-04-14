@@ -17,6 +17,7 @@ Available variables:
 
 - `NUXT_PUBLIC_SITE_URL` sets the public site URL used for canonical tags, `robots.txt`, and `sitemap.xml`.
 - `NUXT_PUBLIC_GA_ID` enables Google Analytics when set to a valid `G-XXXXXXXXXX` measurement ID. Production defaults to a placeholder fake value in docs.
+- `NUXT_PUBLIC_GTM_ID` enables the Google Tag Manager container when set to a valid `GTM-XXXXXXX` ID.
 - `NUXT_ALLOWED_ORIGINS` is a comma-separated allowlist for cross-origin API access.
 - `AUTH_SESSION_SECRET` is required before enabling any cookie-backed auth routes.
 - `ADMIN_USER_IDS` can be used by future admin-only routes as an explicit allowlist.
@@ -49,6 +50,7 @@ npm run security:deps
 npm run ci:security
 npm run start
 npm run package:cpanel
+npm run deploy:sftp
 ```
 
 ## Security Baseline
@@ -93,8 +95,43 @@ For cPanel Application Manager:
 4. Set `NODE_ENV=production`.
 5. Set `NUXT_PUBLIC_SITE_URL=https://example.invalid`.
 6. Set `NUXT_PUBLIC_GA_ID=G-FAKE123456` unless you intentionally want a different production measurement ID.
-7. Set `NUXT_ALLOWED_ORIGINS=https://example.invalid` unless a different trusted origin must call `/api/*`.
-8. Set `AUTH_SESSION_SECRET` before deploying any authenticated API routes.
-9. Leave `SECURITY_STRICT_BROWSER_HEADERS=false` unless you have explicitly verified that stricter CSP/browser isolation does not break the hosted frontend.
+7. Set `NUXT_PUBLIC_GTM_ID=GTM-TCS6X8R9` unless you intentionally want a different Tag Manager container.
+8. Set `NUXT_ALLOWED_ORIGINS=https://example.invalid` unless a different trusted origin must call `/api/*`.
+9. Set `AUTH_SESSION_SECRET` before deploying any authenticated API routes.
+10. Leave `SECURITY_STRICT_BROWSER_HEADERS=false` unless you have explicitly verified that stricter CSP/browser isolation does not break the hosted frontend.
 
 More deployment detail is in `CPANEL.md`.
+
+## Static SFTP Deploy
+
+For static hosting on cPanel via `public_html`, this repo also includes an SFTP deploy script:
+
+```bash
+npm run generate
+DEPLOY_SFTP_HOST=example.com \
+DEPLOY_SFTP_USER=example-user \
+DEPLOY_SFTP_REMOTE_ROOT=public_html \
+npm run deploy:sftp
+```
+
+Optional variables:
+
+- `DEPLOY_SFTP_PORT=22`
+- `DEPLOY_SFTP_LOCAL_ROOT=.output/public`
+- `DEPLOY_SFTP_IDENTITY_FILE=/path/to/private_key`
+- `DEPLOY_SFTP_PASSWORD=...` only when `sshpass` is installed locally
+- `DEPLOY_SFTP_STRICT_HOST_KEY_CHECKING=accept-new`
+
+Behavior:
+
+- uploads the current static build from `.output/public`
+- uploads `index.html` and `menu/index.html` last to reduce inconsistent deploy windows
+- removes stale remote site files when SSH shell access is available
+- preserves `.well-known` and `.htaccess*` in the remote web root
+
+Flags:
+
+- `npm run deploy:sftp -- --dry-run` prints the generated SFTP batch without uploading
+- `npm run deploy:sftp -- --no-clean` uploads only and skips stale-file cleanup
+
+Prefer SSH key auth over password auth. If your host has SFTP disabled, enable SSH access in cPanel first.

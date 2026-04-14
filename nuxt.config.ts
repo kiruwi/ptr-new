@@ -1,4 +1,5 @@
 const defaultGoogleAnalyticsId = process.env.NODE_ENV === "production" ? "G-3FHWVHDTZC" : "";
+const defaultGoogleTagManagerId = process.env.NODE_ENV === "production" ? "GTM-TCS6X8R9" : "";
 
 export default defineNuxtConfig({
   compatibilityDate: "2026-03-16",
@@ -45,12 +46,18 @@ export default defineNuxtConfig({
           crossorigin: "",
         },
       ],
+      script: [
+        {
+          src: "https://app.secureprivacy.ai/script/69de386301329e2e2f015d4b.js",
+        },
+      ],
     },
   },
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://patamurestaurants.com",
       googleAnalyticsId: process.env.NUXT_PUBLIC_GA_ID || defaultGoogleAnalyticsId,
+      googleTagManagerId: process.env.NUXT_PUBLIC_GTM_ID || defaultGoogleTagManagerId,
     },
   },
   routeRules: {

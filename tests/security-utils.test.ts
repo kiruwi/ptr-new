@@ -152,7 +152,7 @@ test("security logging redacts secrets and pii", () => {
 });
 
 test("csp stays permissive enough for Nuxt hydration and animation runtime code", () => {
-  const policy = buildContentSecurityPolicy("/", "https://example.com", "G-3FHWVHDTZC");
+  const policy = buildContentSecurityPolicy("/", "https://example.com", "G-3FHWVHDTZC", "GTM-TCS6X8R9");
   const scriptDirective = policy
     .split("; ")
     .find((directive) => directive.startsWith("script-src"));
@@ -160,6 +160,7 @@ test("csp stays permissive enough for Nuxt hydration and animation runtime code"
   assert.ok(scriptDirective);
   assert.match(policy, /script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: 'sha256-[^']+'/);
   assert.match(policy, /https:\/\/www\.googletagmanager\.com/);
+  assert.match(policy, /frame-src 'self' https:\/\/www\.googletagmanager\.com/);
   assert.match(policy, /worker-src 'self' blob:/);
 });
 

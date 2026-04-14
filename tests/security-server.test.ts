@@ -32,6 +32,7 @@ test("security middleware adds strict headers, denies unauthorized admin routes,
     public: {
       siteUrl: "https://patamurestaurants.com",
       googleAnalyticsId: "G-3FHWVHDTZC",
+      googleTagManagerId: "GTM-TCS6X8R9",
     },
   });
 
@@ -105,6 +106,7 @@ test("production middleware can opt into strict browser headers explicitly", asy
     public: {
       siteUrl: "https://patamurestaurants.com",
       googleAnalyticsId: "G-3FHWVHDTZC",
+      googleTagManagerId: "GTM-TCS6X8R9",
     },
   });
 
@@ -122,6 +124,7 @@ test("production middleware can opt into strict browser headers explicitly", asy
       headers.get("content-security-policy") ?? "",
       /script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: 'sha256-/,
     );
+    assert.match(headers.get("content-security-policy") ?? "", /frame-src 'self' https:\/\/www\.googletagmanager\.com/);
     assert.equal(headers.get("cross-origin-opener-policy"), "same-origin");
     assert.equal(headers.get("cross-origin-resource-policy"), "same-site");
     assert.equal(headers.get("origin-agent-cluster"), "?1");
@@ -144,6 +147,7 @@ test("development middleware omits csp and browser-isolation headers so local ru
     public: {
       siteUrl: "http://localhost:3000",
       googleAnalyticsId: "",
+      googleTagManagerId: "",
     },
   });
 

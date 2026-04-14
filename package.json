@@ -18,7 +18,8 @@
     "security:deps": "npm audit --audit-level=high",
     "ci:security": "npm run typecheck && npm run build && npm run test:security && npm run security:sast && npm run security:deps",
     "start": "node app.js",
-    "package:cpanel": "node scripts/package-cpanel.mjs"
+    "package:cpanel": "node scripts/package-cpanel.mjs",
+    "deploy:sftp": "node scripts/deploy-sftp.mjs"
   },
   "dependencies": {
     "argon2": "0.44.0",

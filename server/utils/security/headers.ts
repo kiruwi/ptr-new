@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { createError, getRequestHeader, getResponseStatus, handleCors, setResponseHeader, type H3Event } from "h3";
-import { normalizeGoogleAnalyticsId } from "../../../src/utils/analytics.ts";
+import { normalizeGoogleAnalyticsId, normalizeGoogleTagManagerId } from "../../../src/utils/analytics.ts";
 import { getHomeStructuredData, getMenuStructuredData, serializeStructuredData } from "../../../src/utils/structuredData.ts";
 import { normalizeSiteUrl } from "../../../src/utils/site.ts";
 import { logSecurityEvent } from "./logging.ts";
@@ -9,6 +9,7 @@ type SecurityHeaderOptions = {
   event: H3Event;
   allowedOrigins: string[];
   gaId?: string;
+  gtmId?: string;
   siteUrl: string;
 };
 
@@ -39,9 +40,10 @@ function buildStructuredDataHashes(siteUrl: string) {
   };
 }
 
-export function buildContentSecurityPolicy(pathname: string, siteUrlInput: string, gaIdInput?: string) {
+export function buildContentSecurityPolicy(pathname: string, siteUrlInput: string, gaIdInput?: string, gtmIdInput?: string) {
   const siteUrl = normalizeSiteUrl(siteUrlInput);
   const gaId = normalizeGoogleAnalyticsId(gaIdInput);
+  const gtmId = normalizeGoogleTagManagerId(gtmIdInput);
   const structuredDataHashes = buildStructuredDataHashes(siteUrl);
   // Nuxt hydration, GSAP, Lenis, and smooth-scrolling behavior are all client-runtime concerns.
   // Keep the frontend script policy permissive enough that animation code is never blocked by CSP.
@@ -51,7 +53,7 @@ export function buildContentSecurityPolicy(pathname: string, siteUrlInput: strin
     scriptSources.push(structuredDataHashes[pathname as keyof typeof structuredDataHashes]);
   }
 
-  if (gaId) {
+  if (gaId || gtmId) {
     scriptSources.push("https://www.googletagmanager.com");
   }
 
@@ -65,8 +67,11 @@ export function buildContentSecurityPolicy(pathname: string, siteUrlInput: strin
     connectSources.push(
       "https://www.google-analytics.com",
       "https://region1.google-analytics.com",
-      "https://www.googletagmanager.com",
     );
+  }
+
+  if (gaId || gtmId) {
+    connectSources.push("https://www.googletagmanager.com");
   }
 
   const directives: Array<[string, string[]]> = [
@@ -80,6 +85,7 @@ export function buildContentSecurityPolicy(pathname: string, siteUrlInput: strin
     ["font-src", ["'self'", "data:", "https://fonts.gstatic.com"]],
     ["img-src", ["'self'", "data:", "https://images.unsplash.com"]],
     ["connect-src", connectSources],
+    ["frame-src", gtmId ? ["'self'", "https://www.googletagmanager.com"] : ["'self'"]],
     ["worker-src", ["'self'", "blob:"]],
     ["manifest-src", ["'self'"]],
   ];
@@ -91,7 +97,7 @@ export function buildContentSecurityPolicy(pathname: string, siteUrlInput: strin
   return directives.map(([name, values]) => (values.length > 0 ? `${name} ${values.join(" ")}` : name)).join("; ");
 }
 
-export function applySecurityHeaders({ event, allowedOrigins, gaId, siteUrl }: SecurityHeaderOptions) {
+export function applySecurityHeaders({ event, allowedOrigins, gaId, gtmId, siteUrl }: SecurityHeaderOptions) {
   setResponseHeader(event, "referrer-policy", "strict-origin-when-cross-origin");
   setResponseHeader(event, "x-content-type-options", "nosniff");
   setResponseHeader(event, "x-frame-options", "DENY");
@@ -104,7 +110,7 @@ export function applySecurityHeaders({ event, allowedOrigins, gaId, siteUrl }: S
     setResponseHeader(event, "strict-transport-security", "max-age=31536000; includeSubDomains; preload");
 
     if (isStrictBrowserHardeningEnabled()) {
-      const contentSecurityPolicy = buildContentSecurityPolicy(event.path, siteUrl, gaId);
+      const contentSecurityPolicy = buildContentSecurityPolicy(event.path, siteUrl, gaId, gtmId);
       setResponseHeader(event, "content-security-policy", contentSecurityPolicy);
       setResponseHeader(event, "cross-origin-opener-policy", "same-origin");
       setResponseHeader(event, "cross-origin-resource-policy", "same-site");

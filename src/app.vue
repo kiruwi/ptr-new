@@ -1,11 +1,28 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
-import { loadGoogleAnalytics, normalizeGoogleAnalyticsId } from "~/utils/analytics";
+import { loadGoogleAnalytics, normalizeGoogleAnalyticsId, normalizeGoogleTagManagerId } from "~/utils/analytics";
 
 const config = useRuntimeConfig();
 const gaId = normalizeGoogleAnalyticsId(config.public.googleAnalyticsId);
+const gtmId = normalizeGoogleTagManagerId(config.public.googleTagManagerId);
 const route = useRoute();
 const loaderState = ref<"pending" | "closing" | "hidden">(route.path === "/" ? "pending" : "hidden");
+
+useHead(() => ({
+  script: gtmId
+    ? [
+        {
+          key: "google-tag-manager",
+          tagPosition: "head",
+          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer',${JSON.stringify(gtmId)});`,
+        },
+      ]
+    : [],
+}));
 
 let loaderTimeout: ReturnType<typeof setTimeout> | undefined;
 
@@ -96,6 +113,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <noscript v-if="gtmId">
+    <iframe
+      :src="`https://www.googletagmanager.com/ns.html?id=${gtmId}`"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    />
+  </noscript>
   <NuxtRouteAnnouncer />
   <div
     v-if="loaderState !== 'hidden'"

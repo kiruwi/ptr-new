@@ -1,4 +1,5 @@
 const GA_MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]{6,16}$/;
+const GTM_CONTAINER_ID_PATTERN = /^GTM-[A-Z0-9]{6,12}$/;
 const GTAG_SRC = "https://www.googletagmanager.com/gtag/js";
 
 declare global {
@@ -21,6 +22,20 @@ export function normalizeGoogleAnalyticsId(value?: string) {
   }
 
   return measurementId;
+}
+
+export function normalizeGoogleTagManagerId(value?: string) {
+  const containerId = value?.trim().toUpperCase() ?? "";
+
+  if (!containerId) {
+    return "";
+  }
+
+  if (!GTM_CONTAINER_ID_PATTERN.test(containerId)) {
+    throw new Error("NUXT_PUBLIC_GTM_ID must be a valid Google Tag Manager container ID.");
+  }
+
+  return containerId;
 }
 
 export function loadGoogleAnalytics(measurementId: string) {
