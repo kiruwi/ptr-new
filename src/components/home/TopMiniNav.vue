@@ -11,7 +11,7 @@ type NavLink = {
 
 const navLinks: NavLink[] = [
   { href: "/menu", label: "Our Menu" },
-  { href: "#accommodation", label: "Rooms", external: true },
+  { href: "/rooms", label: "Rooms" },
 ];
 
 const isOpen = ref(false);

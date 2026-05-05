@@ -1,5 +1,9 @@
 :root {
-  --bg: #151515;
+  --bg: #3d462f;
+  --olive-bg: #3d462f;
+  --olive-bg-deep: #2f3725;
+  --olive-rgb: 61, 70, 47;
+  --olive-deep-rgb: 47, 55, 37;
   --ink: #f6f0e3;
   --muted: #d5c2a2;
   --gold: #b69162;
@@ -9,6 +13,8 @@
   --text-stroke-width: clamp(0.55px, 0.08vw, 1.1px);
   --font-display: "Cormorant Garamond";
   --font-body: "Manrope";
+  --copy-size: 1.04rem;
+  --copy-line-height: 1.55;
 }
 
 *,

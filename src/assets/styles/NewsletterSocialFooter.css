@@ -31,7 +31,7 @@
 
 .newsletter-form input,
 .newsletter-form button {
-  background: rgba(15, 17, 23, 0.68);
+  background: rgba(var(--olive-rgb), 0.72);
   color: #f6eedf;
   height: 2rem;
   padding: 0 0.58rem;
@@ -93,7 +93,7 @@
   place-items: center;
   border: 1px solid rgba(233, 207, 168, 0.72);
   border-radius: 999px;
-  background: rgba(17, 18, 24, 0.55);
+  background: rgba(var(--olive-rgb), 0.58);
   color: #f5e5c9;
   transform: translate(-50%, -50%);
   transition:
@@ -111,7 +111,7 @@
 .social-link:focus-visible .social-link__icon {
   transform: translate(-50%, -50%) scale(1.06);
   border-color: rgba(245, 219, 179, 0.94);
-  background: rgba(17, 18, 24, 0.82);
+  background: rgba(var(--olive-deep-rgb), 0.84);
 }
 
 .social-link:focus-visible {

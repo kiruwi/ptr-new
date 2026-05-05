@@ -12,8 +12,10 @@ onMounted(() => {
 
   void (async () => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice =
+      window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(hover: none)").matches;
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || isTouchDevice) {
       return;
     }
 

@@ -63,12 +63,13 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/menu": { prerender: true },
+    "/rooms": { prerender: true },
     "/robots.txt": { prerender: true },
     "/sitemap.xml": { prerender: true },
   },
   nitro: {
     prerender: {
-      routes: ["/", "/menu", "/robots.txt", "/sitemap.xml"],
+      routes: ["/", "/menu", "/rooms", "/robots.txt", "/sitemap.xml"],
     },
   },
 });

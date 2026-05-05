@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
-import { loadGoogleAnalytics, normalizeGoogleAnalyticsId, normalizeGoogleTagManagerId } from "~/utils/analytics";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { normalizeGoogleAnalyticsId, normalizeGoogleTagManagerId } from "~/utils/analytics";
 
 const config = useRuntimeConfig();
 const gaId = normalizeGoogleAnalyticsId(config.public.googleAnalyticsId);
@@ -9,8 +9,32 @@ const route = useRoute();
 const loaderState = ref<"pending" | "closing" | "hidden">(route.path === "/" ? "pending" : "hidden");
 
 useHead(() => ({
-  script: gtmId
-    ? [
+  script: [
+    ...(gaId
+      ? [
+          {
+            key: "google-analytics",
+            src: `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`,
+            async: true,
+            crossorigin: "anonymous",
+            tagPosition: "head",
+          },
+          {
+            key: "google-analytics-config",
+            tagPosition: "head",
+            textContent: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = window.gtag || gtag;
+gtag('js', new Date());
+gtag('config', ${JSON.stringify(gaId)}, {
+  anonymize_ip: true,
+  transport_type: 'beacon'
+});`,
+          },
+        ]
+      : []),
+    ...(gtmId
+      ? [
         {
           key: "google-tag-manager",
           tagPosition: "head",
@@ -21,7 +45,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer',${JSON.stringify(gtmId)});`,
         },
       ]
-    : [],
+      : []),
+  ],
 }));
 
 let loaderTimeout: ReturnType<typeof setTimeout> | undefined;
@@ -92,10 +117,6 @@ async function waitForHeroImage() {
 }
 
 onMounted(() => {
-  if (gaId) {
-    loadGoogleAnalytics(gaId);
-  }
-
   if (route.path !== "/" || loaderState.value === "hidden") {
     return;
   }
@@ -110,6 +131,21 @@ onBeforeUnmount(() => {
     clearTimeout(loaderTimeout);
   }
 });
+
+watch(
+  () => route.fullPath,
+  (path) => {
+    if (!import.meta.client || !gaId || typeof window.gtag !== "function") {
+      return;
+    }
+
+    window.gtag("config", gaId, {
+      page_path: path,
+      anonymize_ip: true,
+      transport_type: "beacon",
+    });
+  },
+);
 </script>
 
 <template>
@@ -128,7 +164,7 @@ onBeforeUnmount(() => {
     aria-hidden="true"
   >
     <img
-      src="/images/logo.svg?v=6"
+      src="/images/logo.svg?v=7"
       alt=""
       width="300"
       height="120"

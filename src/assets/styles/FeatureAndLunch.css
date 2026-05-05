@@ -55,8 +55,8 @@
   margin: 0.65rem auto 0;
   max-width: 55ch;
   color: #ffffff;
-  font-size: 1.04rem;
-  line-height: 1.55;
+  font-size: var(--copy-size);
+  line-height: var(--copy-line-height);
 }
 
 .full-banner {
@@ -81,7 +81,9 @@
   margin: 0 auto;
   width: min(640px, calc(100% - 1rem));
   text-align: center;
-  padding: 0 0 1.5rem;
+  padding: 1.3rem 1.4rem 1.5rem;
+  background: rgba(var(--olive-rgb), 0.9);
+  border-radius: 18px;
 }
 
 .full-banner h2 {
@@ -90,13 +92,13 @@
   font-size: clamp(2.4rem, 7.2vw, 4.2rem);
   line-height: 0.92;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--gold-bright);
 }
 
 .full-banner p {
   margin: 0.58rem auto 0;
   max-width: 58ch;
   color: #ffffff;
-  font-size: 1.04rem;
-  line-height: 1.54;
+  font-size: var(--copy-size);
+  line-height: var(--copy-line-height);
 }

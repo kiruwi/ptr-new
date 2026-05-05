@@ -11,7 +11,7 @@ import { siteInfo } from "~/data/site";
       :href="siteInfo.googleReviewsUrl"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="View Patamu Restaurant and Lodge Google rating of 4.3 from 95 reviews"
+      aria-label="View Patamu Restaurant, Lodge & Safaris Google rating of 4.3 from 95 reviews"
     >
       <span class="hero-global-rating__google" aria-hidden="true">
         <svg viewBox="0 0 533.5 544.3" role="presentation" focusable="false">
@@ -47,7 +47,7 @@ import { siteInfo } from "~/data/site";
 
     <article class="hero-image image-arch" aria-hidden="true">
       <img
-        src="/images/patamu.webp"
+        :src="siteInfo.image"
         alt=""
         fetchpriority="high"
         loading="eager"
@@ -61,7 +61,8 @@ import { siteInfo } from "~/data/site";
 
       <h1>
         Patamu
-        <span>Restaurant & Lodge</span>
+        <span>Restaurant, Lodge &</span>
+        <span> Safaris</span>
       </h1>
 
       <p>

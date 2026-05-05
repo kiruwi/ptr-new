@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BottomNoteSection from "~/components/home/BottomNoteSection.vue";
+import SiteFooter from "~/components/home/SiteFooter.vue";
 import MenuGroupView from "~/components/menu/MenuGroupView.vue";
 import { menuCategories } from "~/data/menu";
 import { siteInfo } from "~/data/site";
@@ -42,8 +44,8 @@ const structuredData = getMenuStructuredData(siteUrl);
 <template>
   <SeoStructuredData :data="structuredData" />
 
-  <main class="restaurant-menu-page">
-    <div class="restaurant-menu-shell">
+  <div class="restaurant-menu-page">
+    <main class="restaurant-menu-shell">
       <header class="restaurant-menu-header">
         <NuxtLink to="/" class="restaurant-menu-home">
           Back to home
@@ -75,6 +77,11 @@ const structuredData = getMenuStructuredData(siteUrl);
           />
         </div>
       </section>
+    </main>
+
+    <div class="restaurant-menu-shell restaurant-menu-shell--footer">
+      <SiteFooter />
+      <BottomNoteSection />
     </div>
-  </main>
+  </div>
 </template>

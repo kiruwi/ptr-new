@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <img
-    src="/images/logo.svg?v=6"
+    src="/images/logo.svg?v=7"
     alt="Patamu logo"
     width="300"
     height="120"

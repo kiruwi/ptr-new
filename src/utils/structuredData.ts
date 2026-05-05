@@ -105,3 +105,54 @@ export function getMenuStructuredData(siteUrlInput: string) {
     ],
   };
 }
+
+export function getRoomsStructuredData(siteUrlInput: string) {
+  const siteUrl = normalizeSiteUrl(siteUrlInput);
+  const pageUrl = absoluteUrl(siteUrl, "/rooms");
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl(siteUrl, "/"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Rooms",
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${pageUrl}#rooms`,
+        name: "Patamu Room Types",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Single Suite",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Double Suite",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Triple Suite",
+          },
+        ],
+      },
+    ],
+  };
+}

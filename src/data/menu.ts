@@ -20,8 +20,7 @@ export type MenuCategory = {
 export const menuCategories: MenuCategory[] = [
   {
     title: "Starters",
-    image:
-      "https://images.unsplash.com/photo-1672636401816-5baecca0d8d4?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/salad.webp",
     imageAlt: "Fresh avocado salad served in a bowl.",
     groups: [
       {
@@ -160,8 +159,7 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: "Sides",
-    image:
-      "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/sides.webp",
     imageAlt: "Steamed rice and roasted potatoes served as sides.",
     groups: [
       {

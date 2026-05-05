@@ -2,7 +2,7 @@
   <section class="feature-row reveal" id="welcome">
     <article class="feature-chip image-sign" aria-hidden="true">
       <img
-        src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?auto=format&fit=crop&w=700&q=80"
+        src="/images/ugali.webp"
         alt=""
         loading="lazy"
         decoding="async"
@@ -29,7 +29,7 @@
 
     <article class="feature-chip image-lamp" aria-hidden="true">
       <img
-        src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=700&q=80"
+        src="/images/fish.webp"
         alt=""
         loading="lazy"
         decoding="async"

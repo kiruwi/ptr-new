@@ -85,7 +85,7 @@
     text-align: center;
     padding: 0.95rem 0.95rem 1.4rem;
     background:
-      linear-gradient(180deg, rgba(21, 21, 21, 0.08) 30%, rgba(21, 21, 21, 0.9) 88%),
+      linear-gradient(180deg, rgba(7, 9, 13, 0.08) 30%, rgba(7, 9, 13, 0.9) 88%),
       radial-gradient(100% 70% at 100% 0%, rgba(182, 145, 98, 0.1), transparent 60%);
   }
 
@@ -208,8 +208,8 @@
   .feature-copy p {
     margin-top: 1.3rem;
     max-width: 30ch;
-    font-size: 1.1rem;
-    line-height: 1.58;
+    font-size: var(--copy-size);
+    line-height: var(--copy-line-height);
   }
 
   .outline-band {
@@ -245,12 +245,13 @@
 
   .full-banner p {
     max-width: 34ch;
-    font-size: 1.07rem;
-    line-height: 1.56;
+    font-size: var(--copy-size);
+    line-height: var(--copy-line-height);
   }
 
   .menu-split {
-    padding: 3.8rem 1rem;
+    min-height: auto;
+    padding: 3rem 1rem 1.4rem;
   }
 
   .menu-photo {
@@ -267,7 +268,8 @@
   }
 
   .stay-intro {
-    padding: 3.4rem 1rem 2.8rem;
+    align-content: start;
+    padding: 1.4rem 1rem 2.8rem;
   }
 
   .stay-intro h2 {
@@ -275,13 +277,18 @@
   }
 
   .stay-intro p {
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
+    font-size: var(--copy-size);
+    line-height: var(--copy-line-height);
+    letter-spacing: 0;
   }
 
   .suite-cards {
     min-height: auto;
     padding: 1.8rem 0 4rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
   }
 
   .suite-track {
@@ -291,6 +298,7 @@
 
   .suite-card {
     flex-basis: min(86vw, 420px);
+    scroll-snap-align: start;
   }
 
   .social-grid {

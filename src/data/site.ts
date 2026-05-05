@@ -5,7 +5,9 @@ export const siteInfo = {
   description:
     "Authentic Tanzanian cuisine, bush hot lunches, and comfortable accommodation in Karatu Town.",
   menuDescription: "Freshly prepared African and international dishes at Patamu Restaurant. All prices in TSH.",
-  image: "/images/patamu.webp",
+  roomsDescription:
+    "Explore Patamu accommodation in Karatu Town, including Single Suite, Double Suite, and Triple Suite rooms.",
+  image: "/images/patamu.webp?v=20260505",
   telephone: "+255620600100",
   alternateTelephone: "+255762413810",
   reservationsEmail: "reservations@patamurestaurants.com",

@@ -24,7 +24,7 @@
 
 .hero-content {
   background:
-    linear-gradient(180deg, rgba(21, 21, 21, 0.96), rgba(21, 21, 21, 0.96)),
+    linear-gradient(180deg, rgba(var(--olive-rgb), 0.96), rgba(var(--olive-rgb), 0.96)),
     radial-gradient(100% 70% at 100% 0%, rgba(182, 145, 98, 0.12), transparent 60%);
   padding: clamp(1.1rem, 3.6vw, 2rem) clamp(0.8rem, 2.5vw, 1.3rem);
   display: flex;
@@ -46,8 +46,8 @@
   gap: 0.58rem;
   padding: 0.52rem 1rem;
   border-bottom: 1px solid rgba(217, 187, 146, 0.42);
-  background: #5f4e39;
-  color: var(--gold-bright);
+  background: var(--gold-bright);
+  color: var(--bg);
   text-decoration: none;
   transition:
     border-color 0.2s ease,
@@ -59,7 +59,7 @@
 .hero-global-rating:hover,
 .hero-global-rating:focus-visible {
   border-color: rgba(240, 222, 194, 0.6);
-  background: #a98155;
+  background: var(--gold);
   transform: translateY(-1px);
   outline: none;
 }
@@ -99,8 +99,8 @@
 }
 
 .hero-global-rating:active {
-  background: #5f4e39;
-  color: var(--gold-bright);
+  background: var(--gold-bright);
+  color: var(--bg);
 }
 
 .top-mini-nav {
@@ -212,7 +212,7 @@
   overflow: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  background: #151515;
+  background: var(--bg);
 }
 
 .top-mini-nav__panel::-webkit-scrollbar {
@@ -291,7 +291,7 @@
   gap: clamp(0.7rem, 1.25vw, 1.05rem);
   padding: clamp(1.5rem, 3.2vw, 2.6rem);
   background:
-    linear-gradient(180deg, rgba(10, 12, 17, 0.98), rgba(7, 8, 13, 0.97)),
+    linear-gradient(180deg, rgba(var(--olive-rgb), 0.98), rgba(var(--olive-deep-rgb), 0.97)),
     radial-gradient(100% 80% at 100% 0%, rgba(184, 145, 98, 0.17), transparent 56%);
 }
 

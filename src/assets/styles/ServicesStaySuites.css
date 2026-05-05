@@ -44,7 +44,8 @@
 
 .stay-intro {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+  isolation: isolate;
   display: grid;
   align-content: center;
   text-align: center;
@@ -57,19 +58,44 @@
   font-size: clamp(2.4rem, 7.8vw, 4.5rem);
   line-height: 0.92;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--gold-bright);
 }
 
 .stay-intro p {
-  margin: 0.7rem 0 0;
+  margin: 0.9rem auto 0;
+  max-width: 58ch;
   color: #ffffff;
+  font-size: var(--copy-size);
+  line-height: var(--copy-line-height);
+}
+
+.stay-intro__button {
+  position: relative;
+  z-index: 4;
+  display: inline-block;
+  width: fit-content;
+  margin: 0.95rem auto 0;
+  padding: 0.72rem 1.6rem;
+  border: 1px solid var(--gold-bright);
+  background: var(--gold-bright);
+  color: #131313;
   font-size: 0.8rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 180ms ease;
+}
+
+.stay-intro__button:hover,
+.stay-intro__button:focus-visible {
+  filter: brightness(0.94);
+  color: #131313;
+  outline: none;
 }
 
 .suite-cards {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   overflow: hidden;

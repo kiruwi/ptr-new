@@ -253,7 +253,7 @@ onMounted(() => {
           x: 0,
         });
 
-        if (maxHorizontalShift() > 0) {
+        if (!isTouchDevice && maxHorizontalShift() > 0) {
           gsap.to(suitesTrack, {
             x: () => -maxHorizontalShift(),
             ease: "none",
