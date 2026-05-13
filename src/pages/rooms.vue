@@ -148,7 +148,7 @@ const structuredData = getRoomsStructuredData(siteUrl);
   <div class="rooms-page">
     <main class="rooms-shell">
       <header class="rooms-header">
-        <NuxtLink to="/" class="rooms-home">
+        <NuxtLink to="/" class="restaurant-menu-home">
           Back to home
         </NuxtLink>
 
@@ -268,7 +268,7 @@ const structuredData = getRoomsStructuredData(siteUrl);
         <div class="rooms-cta__copy">
           <div class="rooms-cta__icon" aria-hidden="true">◌</div>
           <div>
-            <h2 id="rooms-cta-title">Ready to book your stay?</h2>
+            <h2 id="rooms-cta-title">Ready to book your room?</h2>
             <p>Contact Patamu for availability, rates, and room reservations.</p>
           </div>
         </div>

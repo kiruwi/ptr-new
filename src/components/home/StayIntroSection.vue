@@ -1,6 +1,6 @@
 <template>
   <section class="stay-intro reveal" id="accommodation">
-    <h2>Stay comfortably in Karatu Town</h2>
+    <h2>Rooms in Karatu Town</h2>
     <p>
       Patamu has a total of 8 double or twin en-suite bedrooms, 6 single rooms and 2 tripples, all with ample space inside. The
       rooms are tastefully furnished with soft lighting, inviting and comfortable beds, mosquito

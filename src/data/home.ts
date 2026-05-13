@@ -2,7 +2,6 @@ export const serviceItems = [
   "Delicious African Cuisine",
   "Breakfast, Lunch & Dinner",
   "Drinks & Bar",
-  "Conference Facilities",
   "Safari Lunch Boxes",
   "Bush Hot Lunches",
   "Accommodation",

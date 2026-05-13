@@ -7,9 +7,8 @@ import { siteInfo } from "~/data/site";
   <footer class="gem-footer reveal" id="contact">
     <div>
       <NuxtLink to="/menu">Menu</NuxtLink>
-      <NuxtLink to="/#accommodation">Stay</NuxtLink>
+      <NuxtLink to="/rooms">Rooms</NuxtLink>
       <NuxtLink to="/#welcome">Story</NuxtLink>
-      <a href="#contact">Contact</a>
     </div>
 
     <div class="footer-center">

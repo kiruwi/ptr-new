@@ -20,7 +20,7 @@
     --mobile-hero-top-offset: calc(var(--mobile-rating-banner-height) + 0.5rem);
     --mobile-hero-logo-extra-offset: 0.45rem;
     --mobile-hero-logo-size: clamp(5.8rem, 28.8vw, 8.6rem);
-    --mobile-nav-control-height: 2.7rem;
+    --mobile-nav-control-height: 3rem;
   }
 
   .gem-shell {
@@ -44,7 +44,10 @@
   }
 
   .outline-band {
-    min-height: auto;
+    display: none;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
   }
 
   .hero-wrap,
@@ -135,7 +138,7 @@
     top: calc(
       var(--mobile-hero-top-offset) + (var(--mobile-hero-logo-size) - var(--mobile-nav-control-height)) / 2
     );
-    right: 0.75rem;
+    right: 0.4rem;
     align-self: auto;
     padding-inline-end: 0;
     margin-bottom: 0;
@@ -148,11 +151,39 @@
     gap: 0.35rem;
   }
 
+  .top-mini-nav__toggle {
+    gap: 0.82rem;
+    min-width: 9rem;
+    min-height: var(--mobile-nav-control-height);
+    padding: 0.62rem 0.95rem;
+  }
+
+  .top-mini-nav__icon {
+    gap: 5px;
+  }
+
+  .top-mini-nav__icon span {
+    width: 24px;
+    height: 2px;
+  }
+
+  .top-mini-nav__toggle.is-open .top-mini-nav__icon span:nth-child(1) {
+    transform: translateY(7px) rotate(42deg);
+  }
+
+  .top-mini-nav__toggle.is-open .top-mini-nav__icon span:nth-child(3) {
+    transform: translateY(-7px) rotate(-42deg);
+  }
+
+  .top-mini-nav__text {
+    font-size: 1rem;
+  }
+
   .top-mini-nav__floating-controls {
     top: calc(
       var(--mobile-hero-top-offset) + (var(--mobile-hero-logo-size) - var(--mobile-nav-control-height)) / 2
     );
-    right: 0.75rem;
+    right: 0.4rem;
   }
 
   .top-mini-nav__panel {
@@ -181,13 +212,12 @@
   .feature-row {
     width: calc(100% - 1.2rem);
     grid-template-columns: 1fr;
-    margin: 0 auto 7.2rem;
-    padding: 0 1rem 4rem;
+    margin: 0 auto 2.4rem;
+    padding: 4.8rem 1rem 1.8rem;
     margin-top: 0;
-    padding-top: 0;
     min-height: auto;
-    align-items: start;
-    align-content: start;
+    align-items: center;
+    align-content: center;
   }
 
   .feature-row > .feature-chip {
@@ -202,7 +232,7 @@
     font-size: clamp(2.7rem, 9vw, 4.2rem);
     line-height: 0.96;
     white-space: normal;
-    margin-top: 2.4rem;
+    margin-top: 0.8rem;
   }
 
   .feature-copy p {
@@ -228,6 +258,10 @@
 
   .outline-band-dual {
     gap: 0.24rem;
+  }
+
+  .outline-band-dual .outline-line {
+    will-change: auto;
   }
 
   .outline-band-dual .outline-bottom {

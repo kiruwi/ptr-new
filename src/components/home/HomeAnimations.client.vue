@@ -68,7 +68,10 @@ onMounted(() => {
       );
 
       gsap.utils.toArray<HTMLElement>(".reveal").forEach((section) => {
-        if (section.matches(".menu-split, .stay-intro, .suite-cards-scroll")) {
+        if (
+          section.matches(".menu-split, .stay-intro, .suite-cards-scroll") ||
+          (isTouchDevice && section.matches(".outline-band"))
+        ) {
           return;
         }
 
@@ -389,7 +392,7 @@ onMounted(() => {
         const top = band.querySelector<HTMLElement>(".outline-top");
         const bottom = band.querySelector<HTMLElement>(".outline-bottom");
 
-        if (!top || !bottom) {
+        if (!top || !bottom || isTouchDevice) {
           return;
         }
 

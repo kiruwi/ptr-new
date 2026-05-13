@@ -7,7 +7,7 @@ export const siteInfo = {
   menuDescription: "Freshly prepared African and international dishes at Patamu Restaurant. All prices in TSH.",
   roomsDescription:
     "Explore Patamu accommodation in Karatu Town, including Single Suite, Double Suite, and Triple Suite rooms.",
-  image: "/images/patamu.webp?v=20260505",
+  image: "/images/patamu.webp?v=20260512",
   telephone: "+255620600100",
   alternateTelephone: "+255762413810",
   reservationsEmail: "reservations@patamurestaurants.com",

@@ -12,6 +12,11 @@ export default defineEventHandler((event) => {
       priority: "1.0",
     },
     {
+      loc: absoluteUrl(siteUrl, "/rooms"),
+      changefreq: "weekly",
+      priority: "0.9",
+    },
+    {
       loc: absoluteUrl(siteUrl, "/menu"),
       changefreq: "monthly",
       priority: "0.8",
