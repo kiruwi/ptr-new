@@ -16,12 +16,12 @@ useHead(() => ({
             key: "google-analytics",
             src: `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`,
             async: true,
-            crossorigin: "anonymous",
-            tagPosition: "head",
+            crossorigin: "anonymous" as const,
+            tagPosition: "head" as const,
           },
           {
             key: "google-analytics-config",
-            tagPosition: "head",
+            tagPosition: "head" as const,
             textContent: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = window.gtag || gtag;
@@ -37,7 +37,7 @@ gtag('config', ${JSON.stringify(gaId)}, {
       ? [
         {
           key: "google-tag-manager",
-          tagPosition: "head",
+          tagPosition: "head" as const,
           textContent: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

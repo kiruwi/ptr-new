@@ -404,6 +404,18 @@
   }
 }
 
+@media (max-width: 900px), (pointer: coarse), (hover: none) {
+  .hero-wrap + .outline-band,
+  .outline-band-dual {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

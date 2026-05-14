@@ -36,6 +36,7 @@ onMounted(() => {
       const servicesSplitDistance = prefersReducedMotion ? 26 : 130;
       const servicesVerticalShift = prefersReducedMotion ? 8 : 28;
       const isDesktop = window.matchMedia("(min-width: 701px)").matches;
+      const canPinSections = isDesktop && !isTouchDevice;
 
       const intro = gsap.timeline({
         defaults: { ease: prefersReducedMotion ? "power1.out" : "power3.out" },
@@ -146,7 +147,7 @@ onMounted(() => {
           });
         }
 
-        if (isDesktop && servicesImage) {
+        if (canPinSections && servicesImage) {
           gsap.set(stayIntro, {
             autoAlpha: 0,
             y: servicesVerticalShift,
